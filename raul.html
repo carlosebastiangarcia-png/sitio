@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raul | Playeras y Logos Exclusivos</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            bg: '#FDFBF7',        /* Crema / Marfil */
+                            card: '#F4EFEB',      /* Beige claro */
+                            olive: '#7C8D76',     /* Verde oliva suave */
+                            dark: '#2C2C2C',      /* Negro / Gris oscuro */
+                            gold: '#C5A059',      /* Dorado discreto */
+                            goldHover: '#B08C46'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Montserrat', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        :root {
+            --bg-color: #FDFBF7;
+            --card-color: #F4EFEB;
+            --olive-color: #7C8D76;
+            --dark-color: #2C2C2C;
+            --gold-color: #C5A059;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--dark-color);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .font-brand {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .font-accent {
+            font-family: 'Playfair Display', serif;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F4EFEB;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #7C8D76;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #5c6b57;
+        }
+
+        .glass-header {
+            background: rgba(253, 251, 247, 0.92);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .nav-link.active {
+            color: var(--gold-color);
+            border-bottom: 2px solid var(--gold-color);
+        }
+
+        .modal-overlay {
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .drawer-slide {
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col justify-between">
+
+    <header class="glass-header fixed top-0 left-0 right-0 z-40 border-b border-brand-card transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                
+                <div class="flex-shrink-0 flex items-center">
+                    <button onclick="navigateTo('home')" class="text-left group focus:outline-none">
+                        <span class="font-brand text-3xl font-extrabold tracking-widest text-brand-dark uppercase">RAUL</span>
+                        <span class="block text-[10px] tracking-[0.25em] text-brand-gold font-medium uppercase -mt-1 group-hover:tracking-[0.35em] transition-all duration-300">Exclusividad Apparel</span>
+                    </button>
+                </div>
+
+                <nav class="hidden md:flex space-x-8 text-sm font-medium tracking-wide">
+                    <button onclick="navigateTo('home')" id="nav-home" class="nav-link active py-2 text-brand-dark hover:text-brand-gold transition-colors">Inicio</button>
+                    <button onclick="navigateTo('shop')" id="nav-shop" class="nav-link py-2 text-brand-dark hover:text-brand-gold transition-colors">Tienda</button>
+                    <button onclick="navigateTo('shop', 'all')" id="nav-categories" class="nav-link py-2 text-brand-dark hover:text-brand-gold transition-colors">Categorías</button>
+                    <button onclick="navigateTo('shop', 'offers')" id="nav-offers" class="nav-link py-2 text-brand-dark hover:text-brand-gold transition-colors">Ofertas</button>
+                    <button onclick="navigateTo('favorites')" id="nav-favorites" class="nav-link py-2 text-brand-dark hover:text-brand-gold transition-colors">Favoritos</button>
+                    <button onclick="navigateTo('about')" id="nav-about" class="nav-link py-2 text-brand-dark hover:text-brand-gold transition-colors">Conócenos</button>
+                    <button onclick="navigateTo('contact')" id="nav-contact" class="nav-link py-2 text-brand-dark hover:text-brand-gold transition-colors">Contacto</button>
+                </nav>
+
+                <div class="flex items-center space-x-5">
+                    <button onclick="navigateTo('shop')" class="text-brand-dark hover:text-brand-gold transition-colors focus:outline-none" title="Buscar">
+                        <i class="fa-solid fa-magnifying-glass text-lg"></i>
+                    </button>
+
+                    <button onclick="navigateTo('favorites')" class="relative text-brand-dark hover:text-brand-gold transition-colors focus:outline-none" title="Ver Favoritos">
+                        <i class="fa-regular fa-heart text-xl"></i>
+                        <span id="fav-badge" class="absolute -top-2 -right-2 bg-brand-olive text-white text-[10px] font-bold rounded-full h-5 w-5 flex items-center justify-center opacity-0 transition-opacity">0</span>
+                    </button>
+
+                    <button onclick="toggleCartDrawer(true)" class="relative text-brand-dark hover:text-brand-gold transition-colors focus:outline-none p-1" title="Carrito de compra">
+                        <i class="fa-solid fa-bag-shopping text-xl"></i>
+                        <span id="cart-badge" class="absolute -top-1 -right-2 bg-brand-gold text-brand-dark text-[10px] font-bold rounded-full h-5 w-5 flex items-center justify-center opacity-0 transition-opacity">0</span>
+                    </button>
+
+                    <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="md:hidden text-brand-dark hover:text-brand-gold focus:outline-none">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-brand-bg border-b border-brand-card px-4 pt-2 pb-6 space-y-3">
+            <button onclick="navigateTo('home'); toggleMobileMenu()" class="block w-full text-left py-2 font-medium text-brand-dark hover:text-brand-gold border-b border-brand-card/50">Inicio</button>
+            <button onclick="navigateTo('shop'); toggleMobileMenu()" class="block w-full text-left py-2 font-medium text-brand-dark hover:text-brand-gold border-b border-brand-card/50">Tienda</button>
+            <button onclick="navigateTo('shop', 'offers'); toggleMobileMenu()" class="block w-full text-left py-2 font-medium text-brand-dark hover:text-brand-gold border-b border-brand-card/50">Ofertas Especiales</button>
+            <button onclick="navigateTo('favorites'); toggleMobileMenu()" class="block w-full text-left py-2 font-medium text-brand-dark hover:text-brand-gold border-b border-brand-card/50">Favoritos</button>
+            <button onclick="navigateTo('about'); toggleMobileMenu()" class="block w-full text-left py-2 font-medium text-brand-dark hover:text-brand-gold border-b border-brand-card/50">Conócenos</button>
+            <button onclick="navigateTo('contact'); toggleMobileMenu()" class="block w-full text-left py-2 font-medium text-brand-dark hover:text-brand-gold">Contacto</button>
+        </div>
+    </header>
+
+    <main class="flex-grow pt-20">
+
+        <!-- VIEW: HOME -->
+        <section id="view-home" class="view-section space-y-16 pb-16">
+            <div class="relative bg-brand-dark text-white min-h-[580px] flex items-center overflow-hidden">
+                <div class="absolute inset-0 bg-cover bg-center opacity-40 transform scale-105 transition-transform duration-1000 hover:scale-100" 
+                     style="background-image: url('https://images.unsplash.com/photo-1521572267360-ee0c2909d518?q=80&w=1600&auto=format&fit=crop');"></div>
+                <div class="absolute inset-0 bg-gradient-to-r from-brand-dark via-brand-dark/80 to-transparent"></div>
+                <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 z-10">
+                    <div class="max-w-2xl space-y-6">
+                        <span class="inline-block bg-brand-gold/20 text-brand-gold border border-brand-gold/30 px-3 py-1 text-xs font-semibold uppercase tracking-widest rounded-full">Nuevos Diseños 2026</span>
+                        <h1 class="font-accent text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-brand-bg leading-tight">
+                            Tu estilo, tu esencia, tus playeras.
+                        </h1>
+                        <p class="text-gray-300 text-lg leading-relaxed font-light">
+                            Descubre diseños y logos exclusivos en playeras elaboradas con algodón de alto gramaje que acompañan tu día a día con distinción urbana.
+                        </p>
+                        <div class="flex flex-wrap gap-4 pt-4">
+                            <button onclick="navigateTo('shop')" class="bg-brand-gold text-brand-dark hover:bg-brand-goldHover font-semibold px-8 py-3.5 rounded-md shadow-lg transition-all transform hover:-translate-y-0.5">
+                                Comprar ahora <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                            </button>
+                            <button onclick="navigateTo('about')" class="border border-white/40 hover:border-white text-white font-medium px-8 py-3.5 rounded-md backdrop-blur-sm transition-all hover:bg-white/10">
+                                Conócenos
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 text-center">
+                    <div class="p-6 bg-brand-card/60 rounded-xl border border-brand-card">
+                        <i class="fa-solid fa-shirt text-brand-gold text-2xl mb-3"></i>
+                        <h4 class="font-bold text-sm tracking-wide uppercase">Algodón 100% Premium</h4>
+                        <p class="text-xs text-gray-600 mt-1">Tejidos suaves y duraderos de alto gramaje.</p>
+                    </div>
+                    <div class="p-6 bg-brand-card/60 rounded-xl border border-brand-card">
+                        <i class="fa-solid fa-palette text-brand-gold text-2xl mb-3"></i>
+                        <h4 class="font-bold text-sm tracking-wide uppercase">Logos Exclusivos</h4>
+                        <p class="text-xs text-gray-600 mt-1">Arte gráfico vectorizado y serigrafía de autor.</p>
+                    </div>
+                    <div class="p-6 bg-brand-card/60 rounded-xl border border-brand-card">
+                        <i class="fa-solid fa-truck-fast text-brand-gold text-2xl mb-3"></i>
+                        <h4 class="font-bold text-sm tracking-wide uppercase">Envíos Rápidos</h4>
+                        <p class="text-xs text-gray-600 mt-1">Cobertura nacional garantizada a tu puerta.</p>
+                    </div>
+                    <div class="p-6 bg-brand-card/60 rounded-xl border border-brand-card">
+                        <i class="fa-brands fa-whatsapp text-brand-gold text-2xl mb-3"></i>
+                        <h4 class="font-bold text-sm tracking-wide uppercase">Atención Directa</h4>
+                        <p class="text-xs text-gray-600 mt-1">Asesoría de tallas y compra vía WhatsApp.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <h2 class="font-accent text-3xl font-bold text-brand-dark">Categorías Destacadas</h2>
+                    <div class="w-16 h-0.5 bg-brand-gold mx-auto my-3"></div>
+                    <p class="text-gray-600 text-sm">Explora nuestras colecciones organizadas para cada ocasión y preferencia gráfica.</p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div onclick="filterByCategory('basicas')" class="group relative h-80 rounded-2xl overflow-hidden cursor-pointer shadow-md">
+                        <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Playeras Básicas">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                        <div class="absolute bottom-6 left-6 right-6">
+                            <span class="text-xs uppercase tracking-widest text-brand-gold font-semibold">Minimalismo</span>
+                            <h3 class="text-xl font-bold text-white font-brand">Playeras Básicas</h3>
+                        </div>
+                    </div>
+                    <div onclick="filterByCategory('oversize')" class="group relative h-80 rounded-2xl overflow-hidden cursor-pointer shadow-md">
+                        <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Playeras Oversize">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                        <div class="absolute bottom-6 left-6 right-6">
+                            <span class="text-xs uppercase tracking-widest text-brand-gold font-semibold">Urbano fit</span>
+                            <h3 class="text-xl font-bold text-white font-brand">Playeras Oversize</h3>
+                        </div>
+                    </div>
+                    <div onclick="filterByCategory('logos')" class="group relative h-80 rounded-2xl overflow-hidden cursor-pointer shadow-md">
+                        <img src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Logos Exclusivos">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                        <div class="absolute bottom-6 left-6 right-6">
+                            <span class="text-xs uppercase tracking-widest text-brand-gold font-semibold">Diseños de Autor</span>
+                            <h3 class="text-xl font-bold text-white font-brand">Logos Exclusivos</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-8">
+                    <div>
+                        <span class="text-brand-olive text-xs font-bold uppercase tracking-widest">Lo más vendido</span>
+                        <h2 class="font-accent text-3xl font-bold text-brand-dark">Productos Destacados</h2>
+                    </div>
+                    <button onclick="navigateTo('shop')" class="mt-2 md:mt-0 text-brand-gold font-bold hover:text-brand-dark text-sm flex items-center transition-colors">
+                        Ver catálogo completo <i class="fa-solid fa-chevron-right text-xs ml-1"></i>
+                    </button>
+                </div>
+
+                <div id="home-featured-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+            </div>
+        </section>
+
+        <!-- VIEW: SHOP -->
+        <section id="view-shop" class="view-section hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+            <div class="border-b border-brand-card pb-6">
+                <nav class="text-xs text-gray-500 mb-2">
+                    <button onclick="navigateTo('home')" class="hover:text-brand-gold">Inicio</button>
+                    <span class="mx-2">/</span>
+                    <span class="text-brand-dark font-semibold">Tienda</span>
+                </nav>
+                <h1 class="font-accent text-3xl sm:text-4xl font-bold text-brand-dark">Catálogo Completo de Playeras</h1>
+                <p class="text-gray-600 text-sm mt-1">Explora diseños urbanos con serigrafía de autor y materiales de alta durabilidad.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+                <aside class="space-y-6 lg:col-span-1 bg-brand-card/50 p-6 rounded-2xl border border-brand-card h-fit">
+                    <div>
+                        <h3 class="font-brand font-bold text-sm tracking-wide text-brand-dark uppercase mb-4">Buscar</h3>
+                        <div class="relative">
+                            <input type="text" id="search-input" oninput="applyShopFilters()" placeholder="Buscar playera o logo..." class="w-full bg-white border border-gray-300 rounded-lg pl-10 pr-4 py-2.5 text-sm focus:outline-none focus:border-brand-gold">
+                            <i class="fa-solid fa-magnifying-glass absolute left-3 top-3.5 text-gray-400 text-sm"></i>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="font-brand font-bold text-sm tracking-wide text-brand-dark uppercase mb-3">Categorías</h3>
+                        <div class="space-y-2 text-sm text-gray-600" id="category-filter-group">
+                            <label class="flex items-center space-x-2 cursor-pointer">
+                                <input type="radio" name="shop-category" value="all" checked onchange="applyShopFilters()" class="text-brand-gold focus:ring-brand-gold">
+                                <span>Todas las prendas</span>
+                            </label>
+                            <label class="flex items-center space-x-2 cursor-pointer">
+                                <input type="radio" name="shop-category" value="basicas" onchange="applyShopFilters()" class="text-brand-gold focus:ring-brand-gold">
+                                <span>Playeras Básicas</span>
+                            </label>
+                            <label class="flex items-center space-x-2 cursor-pointer">
+                                <input type="radio" name="shop-category" value="oversize" onchange="applyShopFilters()" class="text-brand-gold focus:ring-brand-gold">
+                                <span>Oversize</span>
+                            </label>
+                            <label class="flex items-center space-x-2 cursor-pointer">
+                                <input type="radio" name="shop-category" value="logos" onchange="applyShopFilters()" class="text-brand-gold focus:ring-brand-gold">
+                                <span>Logos Exclusivos</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="pt-2 border-t border-gray-200">
+                        <label class="flex items-center justify-between cursor-pointer">
+                            <span class="text-sm font-semibold text-brand-dark">Solo Ofertas Especiales</span>
+                            <input type="checkbox" id="offer-filter" onchange="applyShopFilters()" class="sr-only peer">
+                            <div class="w-11 h-6 bg-gray-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-brand-gold relative"></div>
+                        </label>
+                    </div>
+
+                    <div class="pt-2 border-t border-gray-200">
+                        <h3 class="font-brand font-bold text-sm tracking-wide text-brand-dark uppercase mb-3">Precio Máximo</h3>
+                        <input type="range" id="price-range" min="200" max="1200" step="50" value="1200" oninput="updatePriceLabel(this.value); applyShopFilters()" class="w-full accent-brand-gold">
+                        <div class="flex justify-between text-xs text-gray-500 font-semibold mt-1">
+                            <span>$200 MXN</span>
+                            <span id="price-max-display" class="text-brand-gold font-bold">$1,200 MXN</span>
+                        </div>
+                    </div>
+
+                    <button onclick="resetShopFilters()" class="w-full text-center text-xs font-bold text-gray-500 hover:text-brand-dark underline py-1">
+                        Restablecer todos los filtros
+                    </button>
+                </aside>
+
+                <main class="lg:col-span-3 space-y-6">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-brand-card/30 p-4 rounded-xl">
+                        <p id="product-results-count" class="text-sm font-medium text-gray-700">Mostrando prendas...</p>
+                        
+                        <div class="flex items-center space-x-3">
+                            <label for="sort-select" class="text-xs font-semibold text-gray-600 uppercase">Ordenar por:</label>
+                            <select id="sort-select" onchange="applyShopFilters()" class="bg-white border border-gray-300 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:border-brand-gold">
+                                <option value="featured">Destacados</option>
+                                <option value="price-asc">Precio: Menor a Mayor</option>
+                                <option value="price-desc">Precio: Mayor a Menor</option>
+                                <option value="name-asc">Nombre (A-Z)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div id="shop-products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+
+                    <div id="empty-shop-state" class="hidden text-center py-16 bg-brand-card/20 rounded-2xl border border-dashed border-gray-300">
+                        <i class="fa-solid fa-shirt text-4xl text-gray-400 mb-3"></i>
+                        <h3 class="text-lg font-bold text-brand-dark">No se encontraron productos</h3>
+                        <p class="text-gray-500 text-sm mt-1 max-w-sm mx-auto">Intenta modificando tu término de búsqueda o cambiando los filtros seleccionados.</p>
+                        <button onclick="resetShopFilters()" class="mt-4 bg-brand-gold text-brand-dark px-6 py-2 rounded-lg text-sm font-bold">Limpiar Filtros</button>
+                    </div>
+                </main>
+            </div>
+        </section>
+
+        <!-- VIEW: FAVORITES -->
+        <section id="view-favorites" class="view-section hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+            <div class="border-b border-brand-card pb-6">
+                <h1 class="font-accent text-3xl font-bold text-brand-dark">Tus Playeras Favoritas</h1>
+                <p class="text-gray-600 text-sm mt-1">Guarda tus prendas y logos elegidos para consultarlos o agregarlos más tarde a tu carrito.</p>
+            </div>
+
+            <div id="favorites-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+
+            <div id="empty-favorites" class="hidden text-center py-16 bg-brand-card/30 rounded-2xl">
+                <i class="fa-regular fa-heart text-5xl text-gray-400 mb-4"></i>
+                <h3 class="text-lg font-bold text-brand-dark">Aún no has guardado favoritos</h3>
+                <p class="text-gray-500 text-sm mt-1">Haz clic en el icono de corazón de cualquier playera para guardarla aquí.</p>
+                <button onclick="navigateTo('shop')" class="mt-4 bg-brand-gold text-brand-dark px-6 py-2.5 rounded-lg text-sm font-bold">Explorar Tienda</button>
+            </div>
+        </section>
+
+        <!-- VIEW: ABOUT -->
+        <section id="view-about" class="view-section hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-12">
+            <div class="text-center max-w-3xl mx-auto space-y-4">
+                <span class="text-brand-gold font-bold text-xs tracking-widest uppercase">Nuestra Historia</span>
+                <h1 class="font-accent text-4xl font-bold text-brand-dark">Conócenos: la esencia de Raul</h1>
+                <p class="text-gray-600 text-base leading-relaxed">
+                    Raul nació con la visión de transformar la playera básica en una prenda de culto urbano. No solo vendemos textil: creamos identidad visual a través de estampados de autor, gráficos vectorizados exclusivos y procesos de serigrafía respetuosos con el medio ambiente.
+                </p>
+            </div>
+
+            <!-- VIDEO DE YOUTUBE -->
+            <div class="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-2xl border border-brand-card bg-brand-dark">
+                <div class="relative pb-[56.25%] h-0">
+                    <iframe
+                        class="absolute top-0 left-0 w-full h-full"
+                        src="https://www.youtube.com/embed/uE5pTMfxjBU"
+                        title="La Esencia de Raul"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 pt-6">
+                <div class="bg-brand-card/40 p-8 rounded-2xl border border-brand-card">
+                    <div class="w-12 h-12 bg-brand-gold/20 text-brand-gold rounded-xl flex items-center justify-center font-bold text-xl mb-4">01</div>
+                    <h3 class="font-brand font-bold text-lg text-brand-dark mb-2">Confección Exclusiva</h3>
+                    <p class="text-xs text-gray-600 leading-relaxed">Seleccionamos hilos de algodón peinado de alta densidad que aseguran comodidad, firmeza y transpirabilidad sin perder la forma tras lavados.</p>
+                </div>
+                <div class="bg-brand-card/40 p-8 rounded-2xl border border-brand-card">
+                    <div class="w-12 h-12 bg-brand-gold/20 text-brand-gold rounded-xl flex items-center justify-center font-bold text-xl mb-4">02</div>
+                    <h3 class="font-brand font-bold text-lg text-brand-dark mb-2">Impresión Premium</h3>
+                    <p class="text-xs text-gray-600 leading-relaxed">Nuestra tinta ecológica base agua penetra la fibra del tejido evitando sensaciones plásticas y manteniendo la viveza de cada logo.</p>
+                </div>
+                <div class="bg-brand-card/40 p-8 rounded-2xl border border-brand-card">
+                    <div class="w-12 h-12 bg-brand-gold/20 text-brand-gold rounded-xl flex items-center justify-center font-bold text-xl mb-4">03</div>
+                    <h3 class="font-brand font-bold text-lg text-brand-dark mb-2">Edición Limitada</h3>
+                    <p class="text-xs text-gray-600 leading-relaxed">Producimos lotes controlados de playeras para garantizar la autenticidad y singularidad de quienes eligen vestir la marca Raul.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- VIEW: CONTACT -->
+        <section id="view-contact" class="view-section hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-12">
+            <div class="text-center max-w-2xl mx-auto space-y-3">
+                <span class="text-brand-gold font-bold text-xs tracking-widest uppercase">Atención Personalizada</span>
+                <h1 class="font-accent text-4xl font-bold text-brand-dark">Ponte en Contacto</h1>
+                <p class="text-gray-600 text-sm">¿Tienes dudas sobre tallas, envíos o te interesa un logo personalizado? Escríbenos directamente.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto items-center">
+                <div class="space-y-6 bg-brand-card/30 p-8 rounded-2xl border border-brand-card">
+                    <div class="flex items-center p-4 bg-white rounded-xl border border-gray-200 hover:border-brand-gold transition-colors">
+                        <i class="fa-brands fa-whatsapp text-3xl text-emerald-600 mr-4"></i>
+                        <div>
+                            <p class="text-xs text-gray-500 uppercase font-semibold">Atención por WhatsApp</p>
+                            <p class="text-sm font-bold text-brand-dark">+52 55 1924 2470</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center p-4 bg-white rounded-xl border border-gray-200">
+                        <i class="fa-solid fa-envelope text-2xl text-brand-gold mr-4"></i>
+                        <div>
+                            <p class="text-xs text-gray-500 uppercase font-semibold">Correo Electrónico</p>
+                            <p class="text-sm font-bold text-brand-dark">contacto@raulapparel.com</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center p-4 bg-white rounded-xl border border-gray-200">
+                        <i class="fa-solid fa-location-dot text-2xl text-brand-olive mr-4"></i>
+                        <div>
+                            <p class="text-xs text-gray-500 uppercase font-semibold">Ubicación</p>
+                            <p class="text-sm font-bold text-brand-dark">Ciudad de México, México</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-2xl border border-brand-card shadow-sm space-y-4">
+                    <h3 class="font-brand font-bold text-lg text-brand-dark">Envíanos un Mensaje</h3>
+                    <form onsubmit="handleContactSubmit(event)" class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-gray-600 mb-1">Nombre</label>
+                            <input type="text" required class="w-full bg-brand-bg border border-gray-300 rounded-lg p-3 text-sm focus:outline-none focus:border-brand-gold">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-gray-600 mb-1">Mensaje</label>
+                            <textarea rows="4" required class="w-full bg-brand-bg border border-gray-300 rounded-lg p-3 text-sm focus:outline-none focus:border-brand-gold" placeholder="Escribe tu consulta sobre tallas o pedidos..."></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-brand-dark text-white font-bold py-3.5 rounded-lg hover:bg-black transition-colors text-sm">
+                            Enviar Consulta
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- OVERLAY & CART DRAWER -->
+    <div id="cart-drawer-overlay" onclick="toggleCartDrawer(false)" class="fixed inset-0 bg-black/50 z-50 opacity-0 pointer-events-none transition-opacity duration-300"></div>
+    <div id="cart-drawer" class="fixed top-0 right-0 h-full w-full max-w-md bg-white z-50 shadow-2xl transform translate-x-full drawer-slide flex flex-col justify-between">
+        <div class="p-6 border-b border-gray-200 flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+                <i class="fa-solid fa-bag-shopping text-brand-gold text-xl"></i>
+                <h2 class="font-brand font-bold text-lg text-brand-dark">Tu Carrito de Compra</h2>
+            </div>
+            <button onclick="toggleCartDrawer(false)" class="text-gray-400 hover:text-brand-dark p-2 text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <div id="cart-items-container" class="p-6 overflow-y-auto flex-grow space-y-4"></div>
+
+        <div class="p-6 border-t border-gray-200 bg-brand-card/30 space-y-4">
+            <div class="space-y-1.5 text-sm">
+                <div class="flex justify-between text-gray-600">
+                    <span>Subtotal</span>
+                    <span id="cart-subtotal" class="font-semibold">$0.00 MXN</span>
+                </div>
+                <div class="flex justify-between text-gray-600">
+                    <span>Envío</span>
+                    <span class="text-emerald-600 font-semibold">Gratis</span>
+                </div>
+                <div class="flex justify-between text-base font-bold text-brand-dark pt-2 border-t border-gray-200">
+                    <span>Total</span>
+                    <span id="cart-total" class="text-brand-gold">$0.00 MXN</span>
+                </div>
+            </div>
+
+            <button onclick="sendWhatsAppOrder()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-4 rounded-xl shadow-lg flex items-center justify-center space-x-2 transition-colors">
+                <i class="fa-brands fa-whatsapp text-2xl"></i>
+                <span>Completar Pedido por WhatsApp</span>
+            </button>
+        </div>
+    </div>
+
+    <footer class="bg-brand-dark text-gray-300 border-t border-brand-dark mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <span class="font-brand text-2xl font-extrabold tracking-widest text-white uppercase">RAUL</span>
+                    <p class="text-xs text-gray-400 mt-2 leading-relaxed">Colecciones exclusivas de playeras con arte urbano de autor. Calidad, diseño y confort en cada prenda.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-3">Navegación</h4>
+                    <div class="space-y-2 text-xs flex flex-col">
+                        <button onclick="navigateTo('home')" class="text-left hover:text-brand-gold">Inicio</button>
+                        <button onclick="navigateTo('shop')" class="text-left hover:text-brand-gold">Tienda</button>
+                        <button onclick="navigateTo('about')" class="text-left hover:text-brand-gold">Conócenos</button>
+                        <button onclick="navigateTo('contact')" class="text-left hover:text-brand-gold">Contacto</button>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-3">Contacto Directo</h4>
+                    <p class="text-xs text-gray-400">Atención personalizada vía WhatsApp:</p>
+                    <p class="text-sm font-bold text-brand-gold mt-1">+52 55 1924 2470</p>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-6 text-center text-xs text-gray-500">
+                &copy; 2026 Raul Apparel. Todos los derechos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const PHONE_NUMBER = "525519242470";
+
+        const PRODUCTS = [
+                {
+                id: 'p1',
+                name: 'Playera Raul Urban Signature Black',
+                category: 'logos',
+                categoryLabel:  'Playeras Logos Exclusivos',
+                price: 499,
+                originalPrice: 650,
+                isOffer: false,
+                stock: 15,
+                image: 'WhatsApp Image 2026-10-19 at 9.58.01 PM.jpeg',
+                description: 'Playera confeccionada en algodón peinado 240g con estampado frontal del logo emblemático de Raul en serigrafía de alta densidad.',
+                sizes: ['CH', 'M', 'G', 'XS',"S","L","XL","XXL", 'EG'],
+                featured: true
+            },
+            {
+                id: 'p2',
+                name: 'Playera Oversize Essential Beige',
+                category: ' logos',
+                categoryLabel: 'Playeras Logos Exclusivos',
+                price: 549,
+                originalPrice: 549,
+                isOffer: false,
+                stock: 10,
+                image: 'WhatsApp Image 2026-10-19 at 9.58.02 PM (1).jpeg',
+                description: 'Corte amplio estilo streetwear en tono marfil con hombros caídos y costuras reinforced.',
+                sizes: ['CH', 'M', 'G', 'XS',"S","L","XL","XXL", 'EG'],
+                featured: true
+            },
+            {
+                id: 'p3',
+                name: 'Playera Básica Algodón Olive Green',
+                category: 'basicas',
+                categoryLabel: 'Playeras Básicas',
+                price: 380,
+                originalPrice: 450,
+                isOffer: true,
+                stock: 20,
+                image: 'WhatsApp Image 2026-10-19 at 9.58.02 PM (2).jpeg',
+                description: 'La prenda fundamental de diario. Algodón ultra suave de tono verde oliva con cuello acanalado.',
+                sizes: ['CH', 'M', 'G', 'XS',"S","L","XL","XXL", 'EG'],
+                featured: true
+            },
+            {
+                id: 'p4',
+                name: 'Logo Exclusivo Vector Raul Edition',
+                category: 'personalizados',
+                categoryLabel: 'Logos Personalizados',
+                price: 899,
+                originalPrice: 1100,
+                isOffer: true,
+                stock: 5,
+                image: 'WhatsApp Image 2026-10-19 at 9.58.02 PM (3).jpeg',
+                description: 'Edición especial que incluye la playera física + archivo fuente vectorizado exclusivo para marcas personalizadas.',
+                sizes: ['CH', 'M', 'G', 'XS',"S","L","XL","XXL", 'EG'],
+                featured: true
+            },
+            {
+                id: 'p5',
+                name: 'Playera Estampada Minimal Geometry',
+                category: 'estampadas',
+                categoryLabel: 'Colección Estampada',
+                price: 480,
+                originalPrice: 480,
+                isOffer: false,
+                stock: 12,
+                image: 'WhatsApp Image 2026-10-19 at 9.58.02 PM (4).jpeg',
+                description: 'Arte abstracto geométrico impreso con pigmentos de base agua libre de ftalatos.',
+                sizes: ['CH', 'M', 'G', 'XS',"S","L","XL","XXL", 'EG'],
+                featured: false
+            },
+            {
+                id: 'p6',
+                name: 'Playera Oversize Acid Wash Dark Grey',
+                category: 'oversize',
+                categoryLabel: 'Playeras Oversize',
+                price: 599,
+                originalPrice: 720,
+                isOffer: true,
+                stock: 8,
+                image: 'WhatsApp Image 2026-10-19 at 9.58.02 PM (5).jpeg',
+                description: 'Efecto deslavado artesanal con textura suave y caída holgada contemporánea.',
+                sizes: ['CH', 'M', 'G', 'XS',"S","L","XL","XXL", 'EG'],
+                featured: false
+            },
+            {
+                id: 'p7',
+                name: 'Playera Básica Clean Ivory',
+                category: 'basicas',
+                categoryLabel: 'Playeras Básicas',
+                price: 350,
+                originalPrice: 350,
+                isOffer: false,
+                stock: 25,
+                image: 'WhatsApp Image 2026-10-19 at 9.58.02 PM.jpeg',
+                description: 'Blanco marfil monocromático de máxima versatilidad.',
+                sizes: ['CH', 'M', 'G', 'XS',"S","L","XL","XXL", 'EG'],
+                featured: false
+            },
+            {
+                id: 'p8',
+                name: 'Logo Personalizado Typo Gold',
+                category: 'personalizados',
+                categoryLabel: 'Logos Personalizados',
+                price: 950,
+                originalPrice: 950,
+                isOffer: false,
+                stock: 4,
+                image: 'WhatsApp Image 2026-10-19 at 9.58.03 PM.jpeg',
+                description: 'Estampado con acabado metálico dorado discreto y personalización de monograma.',
+                sizes: ['CH', 'M', 'G', 'XS',"S","L","XL","XXL", 'EG'],
+                featured: false
+
+            },
+            {
+                id: 'p9',
+                name: 'Playera Oversize Acid Wash Dark Grey',
+                category: 'oversize',
+                categoryLabel: 'Playeras Oversize',
+                price: 599,
+                originalPrice: 720,
+                isOffer: true,
+                stock: 8,
+                image: 'WhatsApp Image 2026-10-19 at 9.58.03 PM (1).jpeg',
+                description: 'Efecto deslavado artesanal con textura suave y caída holgada contemporánea.',
+                sizes: ['CH', 'M', 'G', 'XS',"S","L","XL","XXL", 'EG'],
+                featured: false
+            },
+            {
+                id: 'p10',
+                name: 'Playera Oversize Acid Wash Dark Grey',
+                category: 'oversize',
+                categoryLabel: 'Playeras Oversize',
+                price: 599,
+                originalPrice: 720,
+                isOffer: true,
+                stock: 8,
+                image: 'WhatsApp Image 2026-10-19 at 9.58.03 PM (2).jpeg',
+                description: 'Efecto deslavado artesanal con textura suave y caída holgada contemporánea.',
+                sizes: ['CH', 'M', 'G', 'XS',"S","L","XL","XXL", 'EG'],
+                featured: false
+                  },
+            {
+                id: 'p9',
+                name: 'Playera Oversize Acid Wash Dark Grey',
+                category: 'oversize',
+                categoryLabel: 'Playeras Oversize',
+                price: 599,
+                originalPrice: 720,
+                isOffer: false,
+                stock: 8,
+                image: 'WhatsApp Image 2026-10-19 at 9.58.03 PM (3).jpeg',
+                description: 'Efecto deslavado artesanal con textura suave y caída holgada contemporánea.',
+                sizes: ['CH', 'M', 'G', 'XS',"S","L","XL","XXL", 'EG'],
+                featured: true
+                 },
+                 {
+                id: 'p1',
+                name: 'Playera Raul Urban Signature Black',
+                category: 'logos',
+                categoryLabel:  'Playeras Logos Exclusivos',
+                price: 499,
+                originalPrice: 650,
+                isOffer: false,
+                stock: 15,
+                image: 'WhatsApp Image 2026-10-19 at 9.58.01 PM.jpeg',
+                description: 'Playera confeccionada en algodón peinado 240g con estampado frontal del logo emblemático de Raul en serigrafía de alta densidad.',
+                sizes: ['CH', 'M', 'G', 'XS',"S","L","XL","XXL", 'EG'],
+                featured: true
+                 },
+                 {
+                id: 'p1',
+                name: 'Playera Raul Urban Signature Black',
+                category: 'logos',
+                categoryLabel:  'Playeras Logos Exclusivos',
+                price: 499,
+                originalPrice: 650,
+                isOffer: false,
+                stock: 15,
+                image: 'WhatsApp Image 2026-10-19 at 9.58.03 PM (4).jpeg',
+                description: 'Playera confeccionada en algodón peinado 240g con estampado frontal del logo emblemático de Raul en serigrafía de alta densidad.',
+                sizes: ['CH', 'M', 'G', 'XS',"S","L","XL","XXL", 'EG'],
+                featured: true
+                 },
+                 {
+                id: 'p1',
+                name: 'Playera Raul Urban Signature Black',
+                category: 'logos',
+                categoryLabel:  'Playeras Logos Exclusivos',
+                price: 499,
+                originalPrice: 650,
+                isOffer: false,
+                stock: 15,
+                image: 'WhatsApp Image 2026-10-19 at 9.58.04 PM (1).jpeg',
+                description: 'Playera confeccionada en algodón peinado 240g con estampado frontal del logo emblemático de Raul en serigrafía de alta densidad.',
+                sizes: ['CH', 'M', 'G', 'XS',"S","L","XL","XXL", 'EG'],
+                featured: true
+        
+            
+            },
+        ];
+
+        let cart = [];
+        let favorites = [];
+
+        window.onload = function() {
+            renderFeaturedProducts();
+            renderShopProducts(PRODUCTS);
+            updateBadges();
+        };
+
+        function navigateTo(viewId, filterCategory = null) {
+            document.querySelectorAll('.view-section').forEach(el => el.classList.add('hidden'));
+            const targetView = document.getElementById('view-' + viewId);
+            if (targetView) targetView.classList.remove('hidden');
+
+            document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+            const activeNav = document.getElementById('nav-' + viewId);
+            if (activeNav) activeNav.classList.add('active');
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            if (viewId === 'shop' && filterCategory) {
+                filterByCategory(filterCategory);
+            }
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        function renderFeaturedProducts() {
+            const container = document.getElementById('home-featured-grid');
+            if (!container) return;
+            const featured = PRODUCTS.filter(p => p.featured);
+            container.innerHTML = featured.map(p => createProductCardHTML(p)).join('');
+        }
+
+        function createProductCardHTML(p) {
+            const currentPrice = p.isOffer ? p.offerPrice : p.price;
+            const isFav = favorites.includes(p.id);
+            return `
+                <div class="bg-white rounded-2xl border border-brand-card overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col justify-between">
+                    <div class="relative overflow-hidden group h-64 bg-brand-card/30">
+                        <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <button onclick="toggleFavorite('${p.id}')" class="absolute top-3 right-3 w-9 h-9 rounded-full bg-white/80 backdrop-blur-md flex items-center justify-center text-brand-dark hover:text-red-500 transition-colors shadow">
+                            <i class="${isFav ? 'fa-solid text-red-500' : 'fa-regular'} fa-heart"></i>
+                        </button>
+                        ${p.isOffer ? `<span class="absolute top-3 left-3 bg-brand-gold text-brand-dark text-[10px] font-extrabold uppercase px-2 py-0.5 rounded">Oferta</span>` : ''}
+                    </div>
+                    <div class="p-5 flex-grow flex flex-col justify-between space-y-4">
+                        <div>
+                            <span class="text-[10px] font-bold text-brand-olive uppercase tracking-wider">${p.category}</span>
+                            <h3 class="font-brand font-bold text-brand-dark text-base mt-0.5 line-clamp-1">${p.name}</h3>
+                            <div class="flex items-center space-x-2 mt-2">
+                                <span class="font-extrabold text-brand-dark">$${currentPrice} MXN</span>
+                                ${p.isOffer ? `<span class="text-xs text-gray-400 line-through">$${p.price}</span>` : ''}
+                            </div>
+                        </div>
+
+                        <div class="space-y-2">
+                            <select id="size-${p.id}" class="w-full bg-brand-bg border border-gray-300 rounded-lg text-xs p-2 focus:outline-none focus:border-brand-gold">
+                                <option value="CH">Talla: Chica (CH)</option>
+                                <option value="M" selected>Talla: Mediana (M)</option>
+                                <option value="G">Talla: Grande (G)</option>
+                                <option value="XG">Talla: Extra Grande (XG)</option>
+                            </select>
+                            <button onclick="addToCart('${p.id}')" class="w-full bg-brand-dark hover:bg-black text-white font-bold py-2.5 rounded-lg text-xs transition-colors flex items-center justify-center space-x-2">
+                                <i class="fa-solid fa-bag-shopping"></i>
+                                <span>Agregar al carrito</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderShopProducts(productsToRender) {
+            const container = document.getElementById('shop-products-grid');
+            const emptyState = document.getElementById('empty-shop-state');
+            const countLabel = document.getElementById('product-results-count');
+
+            if (countLabel) countLabel.innerText = `Mostrando ${productsToRender.length} prendas`;
+
+            if (productsToRender.length === 0) {
+                container.innerHTML = '';
+                emptyState.classList.remove('hidden');
+            } else {
+                emptyState.classList.add('hidden');
+                container.innerHTML = productsToRender.map(p => createProductCardHTML(p)).join('');
+            }
+        }
+
+        function applyShopFilters() {
+            const searchVal = document.getElementById('search-input')?.value.toLowerCase() || '';
+            const selectedCat = document.querySelector('input[name="shop-category"]:checked')?.value || 'all';
+            const onlyOffers = document.getElementById('offer-filter')?.checked || false;
+            const maxPrice = parseFloat(document.getElementById('price-range')?.value || 1200);
+            const sortVal = document.getElementById('sort-select')?.value || 'featured';
+
+            let filtered = PRODUCTS.filter(p => {
+                const currentPrice = p.isOffer ? p.offerPrice : p.price;
+                const matchesSearch = p.name.toLowerCase().includes(searchVal);
+                const matchesCat = selectedCat === 'all' || p.category === selectedCat;
+                const matchesOffer = !onlyOffers || p.isOffer;
+                const matchesPrice = currentPrice <= maxPrice;
+
+                return matchesSearch && matchesCat && matchesOffer && matchesPrice;
+            });
+
+            if (sortVal === 'price-asc') {
+                filtered.sort((a, b) => (a.isOffer ? a.offerPrice : a.price) - (b.isOffer ? b.offerPrice : b.price));
+            } else if (sortVal === 'price-desc') {
+                filtered.sort((a, b) => (b.isOffer ? b.offerPrice : b.price) - (a.isOffer ? a.offerPrice : a.price));
+            } else if (sortVal === 'name-asc') {
+                filtered.sort((a, b) => a.name.localeCompare(b.name));
+            }
+
+            renderShopProducts(filtered);
+        }
+
+        function filterByCategory(cat) {
+            navigateTo('shop');
+            const radio = document.querySelector(`input[name="shop-category"][value="${cat}"]`);
+            if (radio) radio.checked = true;
+            applyShopFilters();
+        }
+
+        function updatePriceLabel(val) {
+            const display = document.getElementById('price-max-display');
+            if (display) display.innerText = `$${val} MXN`;
+        }
+
+        function resetShopFilters() {
+            if (document.getElementById('search-input')) document.getElementById('search-input').value = '';
+            const allRadio = document.querySelector('input[name="shop-category"][value="all"]');
+            if (allRadio) allRadio.checked = true;
+            if (document.getElementById('offer-filter')) document.getElementById('offer-filter').checked = false;
+            if (document.getElementById('price-range')) document.getElementById('price-range').value = 1200;
+            updatePriceLabel(1200);
+            applyShopFilters();
+        }
+
+        function addToCart(productId) {
+            const product = PRODUCTS.find(p => p.id === productId);
+            if (!product) return;
+
+            const sizeSelect = document.getElementById(`size-${productId}`);
+            const selectedSize = sizeSelect ? sizeSelect.value : 'M';
+
+            const existingIndex = cart.findIndex(item => item.id === productId && item.size === selectedSize);
+
+            if (existingIndex > -1) {
+                cart[existingIndex].quantity += 1;
+            } else {
+                cart.push({
+                    id: product.id,
+                    name: product.name,
+                    price: product.isOffer ? product.offerPrice : product.price,
+                    image: product.image,
+                    size: selectedSize,
+                    quantity: 1
+                });
+            }
+
+            updateBadges();
+            renderCartItems();
+            toggleCartDrawer(true);
+        }
+
+        function updateCartQuantity(index, delta) {
+            if (cart[index]) {
+                cart[index].quantity += delta;
+                if (cart[index].quantity <= 0) {
+                    cart.splice(index, 1);
+                }
+            }
+            updateBadges();
+            renderCartItems();
+        }
+
+        function renderCartItems() {
+            const container = document.getElementById('cart-items-container');
+            if (!container) return;
+
+            if (cart.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-12 text-gray-400 space-y-2">
+                        <i class="fa-solid fa-bag-shopping text-4xl mb-2"></i>
+                        <p class="text-sm font-semibold">Tu carrito está vacío</p>
+                    </div>
+                `;
+            } else {
+                container.innerHTML = cart.map((item, idx) => `
+                    <div class="flex items-center space-x-4 bg-brand-bg p-3 rounded-xl border border-brand-card">
+                        <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-cover rounded-lg">
+                        <div class="flex-grow">
+                            <h4 class="text-xs font-bold text-brand-dark line-clamp-1">${item.name}</h4>
+                            <p class="text-[10px] text-gray-500">Talla: <span class="font-bold text-brand-gold">${item.size}</span></p>
+                            <p class="text-xs font-extrabold text-brand-dark mt-1">$${item.price * item.quantity} MXN</p>
+                        </div>
+                        <div class="flex items-center space-x-2 bg-white rounded-lg border border-gray-200 px-2 py-1">
+                            <button onclick="updateCartQuantity(${idx}, -1)" class="text-xs text-gray-500 hover:text-brand-dark font-bold px-1">-</button>
+                            <span class="text-xs font-bold text-brand-dark">${item.quantity}</span>
+                            <button onclick="updateCartQuantity(${idx}, 1)" class="text-xs text-gray-500 hover:text-brand-dark font-bold px-1">+</button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            const subtotal = cart.reduce((sum, i) => sum + (i.price * i.quantity), 0);
+            document.getElementById('cart-subtotal').innerText = `$${subtotal} MXN`;
+            document.getElementById('cart-total').innerText = `$${subtotal} MXN`;
+        }
+
+        function toggleCartDrawer(open) {
+            const overlay = document.getElementById('cart-drawer-overlay');
+            const drawer = document.getElementById('cart-drawer');
+
+            if (open) {
+                overlay.classList.remove('opacity-0', 'pointer-events-none');
+                drawer.classList.remove('translate-x-full');
+            } else {
+                overlay.classList.add('opacity-0', 'pointer-events-none');
+                drawer.classList.add('translate-x-full');
+            }
+        }
+
+        function toggleFavorite(productId) {
+            const index = favorites.indexOf(productId);
+            if (index > -1) {
+                favorites.splice(index, 1);
+            } else {
+                favorites.push(productId);
+            }
+
+            updateBadges();
+            renderFeaturedProducts();
+            applyShopFilters();
+            renderFavorites();
+        }
+
+        function renderFavorites() {
+            const container = document.getElementById('favorites-grid');
+            const emptyState = document.getElementById('empty-favorites');
+            if (!container) return;
+
+            const favProducts = PRODUCTS.filter(p => favorites.includes(p.id));
+
+            if (favProducts.length === 0) {
+                container.innerHTML = '';
+                emptyState?.classList.remove('hidden');
+            } else {
+                emptyState?.classList.add('hidden');
+                container.innerHTML = favProducts.map(p => createProductCardHTML(p)).join('');
+            }
+        }
+
+        function updateBadges() {
+            const cartBadge = document.getElementById('cart-badge');
+            const favBadge = document.getElementById('fav-badge');
+
+            const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+            if (cartBadge) {
+                cartBadge.innerText = cartCount;
+                cartBadge.style.opacity = cartCount > 0 ? '1' : '0';
+            }
+
+            if (favBadge) {
+                favBadge.innerText = favorites.length;
+                favBadge.style.opacity = favorites.length > 0 ? '1' : '0';
+            }
+        }
+
+        function sendWhatsAppOrder() {
+            if (cart.length === 0) {
+                alert("Tu carrito está vacío.");
+                return;
+            }
+
+            let message = "¡Hola! Quisiera realizar el siguiente pedido en Raul Apparel:\n\n";
+            let total = 0;
+
+            cart.forEach((item, index) => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                message += `${index + 1}. *${item.name}*\n   - Talla: ${item.size}\n   - Cantidad: ${item.quantity}\n   - Precio: $${itemTotal} MXN\n\n`;
+            });
+
+            message += `*Total a pagar: $${total} MXN*\n\n`;
+            message += "Quedo a la espera para coordinar el pago y envío. ¡Gracias!";
+
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/${PHONE_NUMBER}?text=${encodedMessage}`;
+
+            window.open(whatsappUrl, '_blank');
+        }
+
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            alert("¡Gracias por tu mensaje! Nos pondremos en contacto contigo a la brevedad.");
+        }
+    </script>
+</body>
+</html>
